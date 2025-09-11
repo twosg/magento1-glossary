@@ -7,7 +7,7 @@
 	 -->
 	<glossary_index_index>
 		<reference name="root">
-			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+			<action method="setTemplate"><template>page/2columns-right.phtml</template></action>
 		</reference>
 		<reference name="head">
 			<action method="addCss"><style>css/glossary.css</style></action>
@@ -25,7 +25,7 @@
 	 -->
 	<glossary_word_view>
 		<reference name="root">
-			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+			<action method="setTemplate"><template>page/2columns-right.phtml</template></action>
 		</reference>
 		<reference name="head">
 			<action method="addCss"><style>css/glossary.css</style></action>
