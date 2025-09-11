@@ -15,21 +15,23 @@
 
     window.fishpigGlossaryIncluded = true;
     
-    var data = <?php echo $this->getJsonDataObject() ?>;
-    var links = $$('a.gls');
+    const data = <?php echo $this->getJsonDataObject() ?>;
+    let links = document.querySelectorAll('a.gls');
     
-    links.each(function(elem) {
-        var m = elem.readAttribute('class').match(/gls-([0-9]+)/);
+    for (let i = 0; i < links.length; i++) {
+        let elem = links[i];
+        let className = elem.getAttribute('class');
+        let m = className.match(/gls-([0-9]+)/);
         
         if (m) {
-            var wordId = m[1];
-            var definition = elem.readAttribute('definition') || data[wordId];
+            let wordId = m[1];
+            let definition = elem.getAttribute('definition') || data[wordId];
             
             if (definition) {
-                elem.writeAttribute('title', definition);
+                elem.setAttribute('title', definition);
             }
         }
-    });
+    }
 })();
 //]]>
 </script>
