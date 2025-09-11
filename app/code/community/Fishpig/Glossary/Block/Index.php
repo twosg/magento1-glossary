@@ -91,4 +91,26 @@ class Fishpig_Glossary_Block_Index extends Mage_Core_Block_Template
 		
 		return false;
 	}
+	
+	/**
+	 * Generate JSON-LD structured data for CollectionPage
+	 *
+	 * @return string
+	 */
+	public function getCollectionPageJsonLd(): string
+	{
+		$helper = Mage::helper('glossary');
+		$organizationData = $helper->getOrganizationData();
+		
+		$jsonLd = [
+			'@context' => 'https://schema.org',
+			'@type' => 'CollectionPage',
+			'name' => $helper->getPageTitle(),
+			'description' => $helper->getMetaDescription(),
+			'url' => $helper->getIndexUrl(),
+			'publisher' => $organizationData
+		];
+		
+		return json_encode($jsonLd, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+	}
 }

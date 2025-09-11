@@ -22,13 +22,48 @@ class Fishpig_Glossary_Block_Word extends Mage_Core_Block_Template
 		return $this->_getData('word');
 	}
 	
-	/*
-	 *
+	/**
+	 * Get glossary index URL
 	 *
 	 * @return string
 	 */
 	public function getGlossaryUrl()
 	{
 		return Mage::helper('glossary')->getIndexUrl();
+	}
+	
+	/**
+	 * Generate JSON-LD structured data for Article + DefinedTerm
+	 *
+	 * @return string
+	 */
+	public function getWordArticleJsonLd(): string
+	{
+		$word = $this->getWord();
+		if (!$word) {
+			return '';
+		}
+		
+		$helper = Mage::helper('glossary');
+		$organizationData = $helper->getOrganizationData();
+		
+		$jsonLd = [
+			'@context' => 'https://schema.org',
+			'@type' => 'Article',
+			'mainEntityOfPage' => [
+				'@type' => 'WebPage',
+				'@id' => $word->getUrl()
+			],
+			'headline' => 'Was ist ' . $word->getWord() . '?',
+			'author' => $organizationData,
+			'publisher' => $organizationData,
+			'about' => [
+				'@type' => 'DefinedTerm',
+				'name' => $word->getWord(),
+				'description' => $word->getMetaDefinition()
+			]
+		];
+		
+		return json_encode($jsonLd, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 	}
 }

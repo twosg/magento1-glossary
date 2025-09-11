@@ -114,6 +114,37 @@ class Fishpig_Glossary_Helper_Data extends Mage_Core_Helper_Abstract
 	}
 	
 	/**
+	 * Get organization data for JSON-LD structured data
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function getOrganizationData(): array
+	{
+		$logoUrl = Mage::getDesign()->getSkinUrl('images/logo.png');
+		$storeName = Mage::getStoreConfig('general/store_information/name');
+		
+		return [
+			'@type' => 'Organization',
+			'name' => $storeName,
+			'logo' => [
+				'@type' => 'ImageObject',
+				'url' => $logoUrl
+			]
+		];
+	}
+	
+	/**
+	 * Safely escape JSON string for HTML output
+	 *
+	 * @param string $json
+	 * @return string
+	 */
+	public function escapeJsonString(string $json): string
+	{
+		return htmlspecialchars($json, ENT_QUOTES | ENT_HTML5, 'UTF-8', false);
+	}
+	
+	/**
 	 * Retrieve a config value
 	 *
 	 * @param string $key
