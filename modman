@@ -3,5 +3,4 @@ app/design/adminhtml/default/default/layout/glossary.xml  app/design/adminhtml/d
 app/design/frontend/base/default/layout/glossary.xml      app/design/frontend/base/default/layout/glossary.xml
 app/design/frontend/base/default/template/glossary        app/design/frontend/base/default/template/glossary
 app/etc/modules/Fishpig_Glossary.xml                      app/etc/modules/Fishpig_Glossary.xml
-js/fishpig/glossary                                       js/fishpig/glossary
 skin/frontend/base/default/css/glossary.css               skin/frontend/base/default/css/glossary.css
