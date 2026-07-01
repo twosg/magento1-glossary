@@ -60,7 +60,7 @@ class Fishpig_Glossary_Adminhtml_GlossaryController extends Mage_Adminhtml_Contr
 	 *
 	 * @return bool
 	 */
-	protected function _isAllowed()
+	protected function _isAllowed(): bool
 	{
 		return true;
 	}
